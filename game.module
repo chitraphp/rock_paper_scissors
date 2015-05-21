@@ -40,8 +40,8 @@ function player1_form() {
         '#required' => TRUE,
     );
     $form['game_words'] = array(
-        '#type' = 'value',
-        '#value' = array(
+        '#type' => 'value',
+        '#value' => array(
             'Rock' => t('Rock'),
             'Paper' => t('Paper'),
             'Scissors' => t('Scissors'))
