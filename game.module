@@ -1,0 +1,51 @@
+<?php
+
+function game_menu() {
+    $items = array();
+    $items['player1'] = array(
+        'title' => 'player1',
+        'options callback' => 'drupal_get_form',
+        'page arguments' => array('player1_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    $items['player2'] = array(
+        'title' => 'player2',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('player2_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['words'] = array(
+        'title' => t('Game words'),
+        'options callback' => 'webform_options_words',
+
+    );
+
+    $items['rps_game_success'] = array(
+        'title' => 'Rock Paper Scissors',
+        'page callback' => 'triangle_tracker_success',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+function player1_form() {
+    $form['input_one'] = array(
+        '#title' => 'Enter word',
+        '#type' => 'select',
+        '#description' => t('Please select the word .'),
+        '#options' => $form['game_words']['#value'],
+        '#required' => TRUE,
+    );
+    $form['game_words'] = array(
+        '#type' = 'value',
+        '#value' = array(
+            'Rock' => t('Rock'),
+            'Paper' => t('Paper'),
+            'Scissors' => t('Scissors'))
+
+    );
+    return $form;
+}
